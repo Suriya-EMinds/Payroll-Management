@@ -1,0 +1,13 @@
+# Environments
+venv/
+.env
+
+# Python Cache
+__pycache__/
+*.pyc
+
+# IDEs
+.idea/
+
+# Ignore actual data files if you don't want them public
+etl/raw_data/*.csv
