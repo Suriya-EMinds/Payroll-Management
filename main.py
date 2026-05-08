@@ -7,5 +7,5 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Attach the routes we built in the other folder
+# Attach the routes built in the api folder
 app.include_router(payroll_routes.router, prefix="/api/v1", tags=["Payroll Operations"])

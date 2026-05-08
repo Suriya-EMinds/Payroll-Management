@@ -1,20 +1,20 @@
 import streamlit as st
 import requests
 
-# 1. Page Configuration
+# Page Configuration
 st.set_page_config(page_title="Payroll Admin", page_icon="💸", layout="centered")
 
 st.title("💸 Payroll Management Admin")
 st.markdown("Upload monthly biometric timesheets to automatically clean data and process payroll.")
 st.divider()
 
-# 2. The Drag-and-Drop Uploader
+# The Drag-and-Drop Uploader
 uploaded_file = st.file_uploader("Upload Timesheet (CSV format only)", type=["csv"])
 
 if uploaded_file is not None:
     st.info(f"File selected: **{uploaded_file.name}**")
 
-    # 3. The Execution Button
+    # The Execution Button
     if st.button("🚀 Run ETL Pipeline & Generate Payroll", type="primary"):
 
         # Shows a loading spinner while the pandas script runs
@@ -23,7 +23,7 @@ if uploaded_file is not None:
                 # Package the file to send over the internet
                 files = {"file": (uploaded_file.name, uploaded_file.getvalue(), "text/csv")}
 
-                # Hit your FastAPI endpoint
+                # FastAPI endpoint
                 response = requests.post("http://api:8000/api/v1/timesheets/upload", files=files)
 
                 # Handle the response
