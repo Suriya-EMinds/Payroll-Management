@@ -1,8 +1,13 @@
 import pandas as pd
-from sqlalchemy import create_engine
 import os
+from sqlalchemy import create_engine
 
-DB_URL = "mysql+pymysql://root:root@localhost/payroll_management"
+host = os.getenv("DB_HOST", "localhost")
+user = os.getenv("DB_USER", "root")
+password = os.getenv("DB_PASSWORD", "root")
+dbname = os.getenv("DB_NAME", "payroll_management")
+
+DB_URL = f"mysql+pymysql://{user}:{password}@{host}/{dbname}"
 
 
 def run_pipeline(file_path: str):
@@ -46,8 +51,4 @@ def run_pipeline(file_path: str):
         print(f"Database Load Failed: {e}")
 
 
-if __name__ == "__main__":
-    # Point the script to the messy CSV we created
-    target_file = os.path.join(os.path.dirname(__file__), 'raw_data', 'timesheets_july.csv')
-    run_pipeline(target_file)
 

@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS timesheets(
     hours_worked DECIMAL(4, 2) NOT NULL,
     status ENUM('PENDING', 'APPROVED', 'PROCESSED') DEFAULT 'PENDING',
     FOREIGN KEY(emp_id) REFERENCES employees(emp_id) ON DELETE CASCADE,
-    CONSTRAINT chk_hours CHECK (hours_worked > 0 AND hours_worked < 24),
+    CONSTRAINT chk_hours CHECK (hours_worked >= 0 AND hours_worked <= 24),
     UNIQUE INDEX idx_emp_date (emp_id, work_date)
 );
 

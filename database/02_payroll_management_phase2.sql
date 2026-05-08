@@ -101,16 +101,16 @@ BEGIN
 END$$
 DELIMITER ;
 
--- 1. Turn off the safety net
-SET SQL_SAFE_UPDATES = 0;
+-- -- 1. Turn off the safety net
+-- SET SQL_SAFE_UPDATES = 0;
+--
+-- -- 2. Run your payroll
+-- CALL sp_run_payroll('2026-06-01', '2026-2027');
+--
+-- -- 3. Turn the safety net back on
+-- SET SQL_SAFE_UPDATES = 1;
 
--- 2. Run your payroll
-CALL sp_run_payroll('2026-06-01', '2026-2027');
-
--- 3. Turn the safety net back on
-SET SQL_SAFE_UPDATES = 1;
-
-SELECT * from pay_stubs;
+-- SELECT * from pay_stubs;
 
 CREATE OR REPLACE VIEW vw_monthly_payslip AS
 SELECT 
